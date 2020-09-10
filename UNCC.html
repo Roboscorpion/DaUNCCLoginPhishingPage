@@ -1,0 +1,146 @@
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1, user-scalable=0">
+    <meta http-equiv="cache-control" content="max-age=0">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+    <meta http-equiv="pragma" content="no-cache">
+    <title>Web Authentication @ UNC Charlotte</title>
+    <!-- Add Bootstrap 3 CSS -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap/css/bootstrap-theme.min.css">
+    <!-- Add custom global CSS file -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/shib-global.css">
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/assets/css/login-ie8.css"/>
+    <![endif]-->
+    <!--[if IE 7]>
+    <link rel="stylesheet" type="text/css" href="/assets/css/login-ie7.css"/>
+    <![endif]-->
+    <link rel="shortcut icon" href="/assets/images/favicon.ico">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script async="" src="//www.google-analytics.com/analytics.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Add in Bootstrap 3 Javascript -->
+    <script src="/assets/css/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div id="page-wrapper">
+    <header>
+        <div id="header-row">
+            <div id="logo-wrapper">
+                <a class="logo" href="http://www.uncc.edu/" title="Home">
+                    <img src="/assets/images/logo.png" alt="UNC Charlotte Logo">
+                </a>
+            </div> <!--/#logo-wrapper -->
+            <div id="branding">
+                <div id="site-name-wrapper">
+                    <div id="site-name">
+                        <span class="site-title" href="#" title="" rel="home">Web Authentication @ UNC Charlotte</span>
+                    </div> <!-- /#site-name -->
+                </div> <!-- /#site-name-wrapper -->
+            </div> <!-- /#branding -->
+        </div> <!--/#header-row -->
+    </header>
+    <div class="content">
+        <div id="slideshow-wrapper">
+            <div id="slideshow">
+                <img src="/assets/images/slideshow/uncc_entrance.jpg" alt="UNC Charlotte Campus Entrance">
+            </div> <!--/#slideshow -->
+        </div> <!--/#slideshow-wrapper -->
+        <div id="login-wrapper">
+            <div id="login-form-wrapper">
+                <form id="shibboleth-login-form" action="/idp/profile/SAML2/Redirect/SSO?execution=e1s1" method="post">
+                    <div id="message-wrapper">
+                        <!--
+                                                        -->
+                        <div id="login-error">
+
+                        </div> <!--/#login-error -->
+                    </div> <!--/#message-wrapper -->
+                    <section>
+                        <label for="username">NinerNET ID:</label>
+                        <span id="login-id-details" class="glyphicon glyphicon-info-sign" data-container="#page-wrapper" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="You may use your NinerNET username, University email address or 800 number to log in." data-original-title="" title="">&nbsp;</span>
+                        <div class="form-textfield-wrapper">
+                            <input class="form-element form-field" id="username" name="j_username" type="text" autocomplete="off" value="" autofocus="">
+                        </div> <!--/.form-textfield-wrapper -->
+                    </section>
+                    <section>
+                        <label for="password">Password:</label>
+                        <div class="form-textfield-wrapper">
+                            <input class="form-element form-field" id="password" name="j_password" type="password" value="" autocomplete="off">
+                        </div>
+                    </section>
+                    <!--
+                    <section>
+                      <div id="login-options">
+                        <div class="form-element-wrapper">
+                          <input type="checkbox" name="donotcache" value="1"> Don't Remember Login                  </div>
+                        <div class="form-element-wrapper">
+                          <input id="_shib_idp_revokeConsent" type="checkbox" name="_shib_idp_revokeConsent" value="true">
+                          Clear prior granting of permission for release of your information to this service.                  </div>
+                      </div>
+                    </section>
+                    -->
+                    <section>
+                        <div class="form-button-wrapper">
+                            <button id="shibboleth-login-button" class="form-element form-button" type="submit" name="_eventId_proceed" style="color: transparent;">Log In</button>
+                        </div>
+                    </section>
+                </form>
+                <div id="help-link-wrapper">
+                    <a href="https://ninernet.uncc.edu"><span class="item-marker">›</span> Forgot your password?</a><br>
+                    <a href="https://ninernet.uncc.edu/selfservice/request_duo_passcode"><span class="item-marker">›</span> Get Duo Code</a>
+                </div> <!--/#help-link-wrapper -->
+                <div id="terms-wrapper">
+                    Use of this service is conditional on compliance with the University's <a target="_blank" href="https://legal.uncc.edu/website-use-policies/computing-network-policies">Computing Network Policies</a>.
+                </div> <!--/#terms-wrapper -->
+            </div> <!--/#login-form-wrapper -->
+        </div> <!--/#login-wrapper -->
+        <div style="clear: both"></div>
+    </div> <!--/.content -->
+    <div id="footer">
+        <div id="footer-message">
+            NOTICE: You MUST close and exit your browser program after log-out to ensure security.
+        </div> <!--/#footer-message -->
+    </div> <!--/#footer -->
+</div> <!--/#page-wrapper -->
+<div style="font-size: 10px; text-align: center; color: #006633;">webauth34</div>
+<script type="text/javascript">
+    window.onload = function() {
+        /* Autofocus on username */
+        var text_input = document.getElementById('username');
+        text_input.focus();
+        text_input.select();
+        /* Enable Popovers */
+        $("#login-id-details").popover();
+    };
+    jQuery.fn.preventDoubleSubmission = function() {
+        $(this).on('submit',function(e){
+            $("#shibboleth-login-button").addClass("processing");
+            var $form = $(this);
+            if ($form.data('submitted') === true) {
+                e.preventDefault();
+            } else {
+                $form.data('submitted', true);
+            }
+        });
+        return this;
+    };
+    $("#shibboleth-login-form").preventDoubleSubmission();
+</script>
+<!-- Google Analytics -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-73131480-1', 'auto');
+    ga('set', 'referrer', 'https://my.uncc.edu/');
+    ga('send', 'pageview', {
+        'dimension1': 'https://my-beta.uncc.edu/shibboleth'
+    });
+    ga('create', 'UA-31498690-1', 'auto', 'master');
+    ga('master.set', 'anonymizeIp', true);
+    ga('master.send', 'pageview');
+</script>
